@@ -1,0 +1,77 @@
+// 0) Create instances of different characters
+// 1) Derived class inheriting from Character and Swimmable
+// 2) Derived class inheriting from Character, Flyable, and Swimmable
+// 3) Derived class inheriting from Character and Flyable
+// 4) Base class for the character
+// 5) Display information and behaviors
+// 6) Interface for flying behavior
+// 7) Interface for swimming behavior
+
+#include <iostream>
+
+// 4) Base class for the character
+class Character {
+public:
+    Character(const std::string& name) : name(name) {}
+
+    void displayInfo() const {
+        std::cout << "Character: " << name << std::endl;
+    }
+
+private:
+    std::string name;
+};
+
+// 6) Interface for flying behavior
+class Flyable {
+public:
+    void fly() const {
+        std::cout << "Flying!" << std::endl;
+    }
+};
+
+// 7) Interface for swimming behavior
+class Swimmable {
+public:
+    void swim() const {
+        std::cout << "Swimming!" << std::endl;
+    }
+};
+
+// 3) Derived class inheriting from Character and Flyable
+class FlyingCharacter : public Character, public Flyable {
+public:
+    FlyingCharacter(const std::string& name) : Character(name) {}
+};
+
+// 1) Derived class inheriting from Character and Swimmable
+class SwimmingCharacter : public Character, public Swimmable {
+public:
+    SwimmingCharacter(const std::string& name) : Character(name) {}
+};
+
+// 2) Derived class inheriting from Character, Flyable, and Swimmable
+class FlyingSwimmingCharacter : public Character, public Flyable, public Swimmable {
+public:
+    FlyingSwimmingCharacter(const std::string& name) : Character(name) {}
+};
+
+int main() {
+    // 0) Create instances of different characters
+    FlyingCharacter flyingCharacter("Superman");
+    SwimmingCharacter swimmingCharacter("AquaMan");
+    FlyingSwimmingCharacter flyingSwimmingCharacter("HybridHero");
+
+    // 5) Display information and behaviors
+    flyingCharacter.displayInfo();
+    flyingCharacter.fly();
+
+    swimmingCharacter.displayInfo();
+    swimmingCharacter.swim();
+
+    flyingSwimmingCharacter.displayInfo();
+    flyingSwimmingCharacter.fly();
+    flyingSwimmingCharacter.swim();
+
+    return 0;
+}
